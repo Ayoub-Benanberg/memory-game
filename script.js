@@ -1,5 +1,6 @@
 const container = document.createElement("div");
 
+
 const select = document.createElement("select");
 select.setAttribute("id", "selected-Format");
 select.style.marginRight = "8px";
@@ -21,11 +22,9 @@ blocksContainer.style.flexDirection = "column";
 
 const generatbtn = document.createElement("button");
 generatbtn.innerText = "Generate";
-generatbtn.setAttribute("onclick","generateBlocks()")
 
-
-// Event listener for the select element
-select.addEventListener("change", function() {
+// Add event listener to the generate button
+generatbtn.addEventListener("click", function() {
   const selectedValue = select.value;
   generateBlocks(selectedValue);
 });
@@ -35,11 +34,11 @@ select.addEventListener("change", function() {
 function generateBlocks(selectedValue) {
   // fixing the problem when u generate blocks
   blocksContainer.innerHTML = "";
-  // Parse the selected value to get rows and columns  gat the selected value 
+  // get rows and columns from the select value
   const [rows, columns] = selectedValue.split("x").map(Number);
 
 
-  // Generate blocks based on the rows and columns
+  // Generate blocks based on the rows and columns in the select value 
   for (let i = 0; i < rows; i++) {
     const row = document.createElement("div");
     row.setAttribute("class", "rows");
@@ -49,12 +48,11 @@ function generateBlocks(selectedValue) {
       const block = document.createElement("div");
       block.style.width = "30px";
       block.style.height = "30px";
-      block.style.backgroundColor = "red"
-      block.style.margin = "3px"
+      block.style.backgroundColor = "red";
+      block.style.margin = "3px";
       block.setAttribute("class", "block");
       row.appendChild(block);
     }
-
 
     blocksContainer.appendChild(row);
   }
