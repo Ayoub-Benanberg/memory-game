@@ -51,7 +51,19 @@ function generateBlocks(selectedValue) {
       block.style.backgroundColor = "red";
       block.style.margin = "3px";
       block.setAttribute("class", "block");
+      
+      
+      // Randomly choose a letter
+      const letter = String.fromCharCode(65 + Math.floor(Math.random() * 26));
+
+      // Place the randomly chosen letter in the block
+      block.innerText = letter;
+      block.style.textAlign = 'center';
+
+
       row.appendChild(block);
+
+
     }
 
     blocksContainer.appendChild(row);
