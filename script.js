@@ -32,13 +32,25 @@ generatbtn.addEventListener("click", function() {
 
 // Function to generate blocks based on the selected format
 function generateBlocks(selectedValue) {
+  
   // fixing the problem when u generate blocks
   blocksContainer.innerHTML = "";
   // get rows and columns from the select value
   const [rows, columns] = selectedValue.split("x").map(Number);
 
+  // Calculate the number of pairs 
+  const numPairs = Math.floor((rows * columns) / 2);
 
-  // Generate blocks based on the rows and columns in the select value 
+
+  // Generate pairs of random letters
+  const letters = Array.from({ length: numPairs }, () => {
+
+    const letter = String.fromCharCode(65 + Math.floor(Math.random() * 26));
+    return [letter, letter];
+  }).flat().sort(() => Math.random() - 0.5); // Shuffle the letters
+
+
+  // Generate blocks based on the rows and columns in the select value
   for (let i = 0; i < rows; i++) {
     const row = document.createElement("div");
     row.setAttribute("class", "rows");
@@ -51,15 +63,11 @@ function generateBlocks(selectedValue) {
       block.style.backgroundColor = "red";
       block.style.margin = "3px";
       block.setAttribute("class", "block");
-      
-      
-      // Randomly choose a letter
-      const letter = String.fromCharCode(65 + Math.floor(Math.random() * 26));
-
-      // Place the randomly chosen letter in the block
-      block.innerText = letter;
       block.style.textAlign = 'center';
 
+      // Add a pair of letters to the block
+      const letter = letters[i * columns + j];
+      block.innerText = letter;
 
       row.appendChild(block);
 
