@@ -6,7 +6,7 @@ select.setAttribute("id", "selected-Format");
 select.style.marginRight = "8px";
 
 
-const options = ["Select format", "2x3", "2x4", "3x4", "4x4"];
+const options = ["Select format", "2x3", "2x4", "3x4", "4x4","5x4"];
 options.forEach(function(optionText) {
   const option = document.createElement("option");
   option.text = optionText;
@@ -42,13 +42,17 @@ function generateBlocks(selectedValue) {
   const numPairs = Math.floor((rows * columns) / 2);
 
 
-  // Generate pairs of random letters
-  const letters = Array.from({ length: numPairs }, () => {
+  // Create an array of letters from A to Z
+  const letters = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
 
-    const letter = String.fromCharCode(65 + Math.floor(Math.random() * 26));
-    return [letter, letter];
-  }).flat().sort(() => Math.random() - 0.5); // Shuffle the letters
+  // Shuffle the letters' positions within the grid
+  const shuffledLetters = [...letters].sort(() => Math.random() - 0.5);
 
+  // Take only the required number of pairs
+  const pairs = shuffledLetters.slice(0, numPairs).flatMap(letter => [letter, letter]);
+
+  // Shuffle the pairs array
+  pairs.sort(() => Math.random() - 0.5);
 
   // Generate blocks based on the rows and columns in the select value
   for (let i = 0; i < rows; i++) {
@@ -66,7 +70,7 @@ function generateBlocks(selectedValue) {
       block.style.textAlign = 'center';
 
       // Add a pair of letters to the block
-      const letter = letters[i * columns + j];
+      const letter = pairs[i * columns + j];
       block.innerText = letter;
 
       row.appendChild(block);
