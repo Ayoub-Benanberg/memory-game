@@ -1,6 +1,6 @@
 // center everything in the body
 const bodyStyle = document.body;
-bodyStyle.style.backgroundColor = "#143109"
+bodyStyle.style.backgroundColor = "#304C89"
 bodyStyle.style.display = 'flex';
 bodyStyle.style.justifyContent="center";
 
@@ -71,13 +71,22 @@ function generateBlocks(selectedValue) {
       block.style.width = "40px";
       block.style.height = "40px";
       block.style.backgroundColor = "#F7F7F7";
-
-
-      
       block.style.margin = "3px";
       block.setAttribute("class", "block");
       block.style.textAlign = 'center';
 
+      block.style.position = "relative";
+      block.style.transition = "0.3s";
+
+    
+      block.addEventListener("click",function(){
+        block.setAttribute("class","flepedBlock");
+        block.style.transform = "rotateY(360deg)";
+        
+      })
+
+
+      
       // add a pair of letters to the block
       const letter = pairs[i * columns + j];
       block.innerText = letter;
