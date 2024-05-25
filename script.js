@@ -86,6 +86,16 @@ function generateBlocks(selectedValue) {
       })
 
 
+  //     block.addEventListener("click", function() {
+  //   if (block.classList.contains("flepedBlock")) {
+  //     block.classList.addClass("block");
+  //     block.style.transform = "rotateY(0deg)";
+  //   } else {
+  //     block.classList.add("flepedBlock");
+  //     block.style.transform = "rotateY(360deg)";
+  //   }
+  // });
+
       
       // add a pair of letters to the block
       const letter = pairs[i * columns + j];
